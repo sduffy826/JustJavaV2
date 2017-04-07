@@ -24,8 +24,8 @@
         <Button
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:onClick="increment"
-            android:text="+"
+            android:onClick="decrement"
+            android:text="-"
             android:textSize="16sp"/>
 
         <TextView
@@ -40,8 +40,8 @@
         <Button
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:onClick="decrement"
-            android:text="-"
+            android:onClick="increment"
+            android:text="+"
             android:textSize="16sp"/>
 
     </LinearLayout>
@@ -62,6 +62,15 @@
         android:layout_height="wrap_content"
         android:paddingBottom="16dp"
         android:text="$0.00"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/thank_you_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:text="Thanks"
         android:textColor="@android:color/black"
         android:textSize="16sp"/>
 

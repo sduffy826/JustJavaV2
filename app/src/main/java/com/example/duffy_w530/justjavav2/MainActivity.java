@@ -68,7 +68,23 @@ public class MainActivity extends AppCompatActivity {
    * Display the price on the screen
    */
   private void displayPrice(int number) {
+
+    String thanksMsg = "";
+    if (number == 0) {
+      thanksMsg = "Please order";
+    }
+    else
+      if (number > 50) {
+        thanksMsg = "You know we don't take credit cards, right?";
+      }
+      else {
+        thanksMsg = "Thank you!!";
+      }
+
+    TextView thanksTextView = (TextView) findViewById(R.id.thank_you_msg);
+    thanksTextView.setText(thanksMsg);
+
     TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-    priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+    priceTextView.setText("Price: " + NumberFormat.getCurrencyInstance().format(number));
   }
 }
