@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         thanksMsg = "You know we don't take credit cards, right?";
       }
       else {
-        thanksMsg = "Thank you!!!";
+        thanksMsg = "Thank you!!";
       }
 
     TextView thanksTextView = (TextView) findViewById(R.id.thank_you_msg);

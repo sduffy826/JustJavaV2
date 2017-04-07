@@ -43,7 +43,6 @@
             android:onClick="increment"
             android:text="+"
             android:textSize="16sp"/>
-        
 
     </LinearLayout>
 
