@@ -2,7 +2,9 @@ package com.example.duffy_w530.justjavav2;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.CheckBox;
 
@@ -12,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
   private static final double PRICEPERCUP = 5.00;
   private static final double PRICEFORWHIPPEDCREAM = 0.75;
+  private static final double PRICEFORCHOCOLATE = 1.50;
 
   /**
    * Handles updating order based on adjust passed in (can be + or -)
@@ -23,13 +26,37 @@ public class MainActivity extends AppCompatActivity {
     updateOrder(theQty);
   }
 
-  public void checkedWhippedCream(View view) {
+  /**
+   * Called when checkbox for one of the condiments is checked, just calls the updateOrder method
+   * @param view
+   */
+  public void condimentChecked(View view) {
     updateOrder();
   }
 
   private void createOrderSummary() {
+    EditText nameEditText = (EditText) findViewById(R.id.name);
     TextView thanksTextView = (TextView) findViewById(R.id.thank_you_msg);
-    thanksTextView.setText("Thank you for your order, have a GREAT day!");
+
+    String outMsg = "Hi " + nameEditText.getText().toString() +
+                     "\nHere's your order: \nCondiments: ";
+
+    int condiments = 0;
+
+    if ( isWhippedCreamChecked() ) {
+      outMsg += "Whipped Cream";
+      Log.v("MainActivity","whipped cream checkbox is checked");
+      condiments++;
+    }
+    if ( isChocolateChecked() ) {
+      outMsg += (condiments > 0 ? ", " : "" ) + "Chocolate (yum)";
+      Log.v("MainActivity","chocolate checkbox is checked");
+      condiments++;
+    }
+    if (condiments == 0) outMsg += "(none - boring)";
+    outMsg += "\nHave a great day!";
+
+    thanksTextView.setText(outMsg);
   }
 
   /**
@@ -72,6 +99,22 @@ public class MainActivity extends AppCompatActivity {
   }
 
   /**
+   * @return indicator if the whipped cream indicator is checked
+   */
+  private boolean isWhippedCreamChecked() {
+    CheckBox checkBoxWhippedCream = (CheckBox) findViewById(R.id.checkBoxWhippedCream);
+    return checkBoxWhippedCream.isChecked();
+  }
+
+  /**
+   * @return indicator on whether the chocolate checkbox is checked
+   */
+  private boolean isChocolateChecked() {
+    CheckBox cb = (CheckBox) findViewById(R.id.checkBoxChocolate);
+    return cb.isChecked();
+  }
+
+  /**
    * Method for when user wants to increment quantity
    */
   public void increment(View view) {
@@ -105,10 +148,13 @@ public class MainActivity extends AppCompatActivity {
    * for the methods to display the number of cups and the price
    */
   private void updateOrder(int numCups) {
-    CheckBox checkBoxWhippedCream = (CheckBox) findViewById(R.id.checkBoxWhippedCream);
-    boolean wantWhippedCream = checkBoxWhippedCream.isChecked();
+    boolean wantWhippedCream = isWhippedCreamChecked();
+    boolean wantChocolate = isChocolateChecked();
+
+    double extras = (wantWhippedCream ? PRICEFORWHIPPEDCREAM : 0.00) +
+                    (wantChocolate ? PRICEFORCHOCOLATE : 0.00);
 
     display(numCups);
-    displayPrice(numCups * (PRICEPERCUP + (wantWhippedCream ? PRICEFORWHIPPEDCREAM : 0.00)));
+    displayPrice(numCups * (PRICEPERCUP + extras));
   }
 }
