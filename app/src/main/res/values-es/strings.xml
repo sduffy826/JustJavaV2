@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JustJavaV2</string>
+    <string name="chocolate">SpanChoc</string>
+    <string name="condiments">SpanCondiment</string>
+    <string name="enter_name">SpanEnterName</string>
+    <string name="good_day">SpanGoodDay</string>
+    <string name="hi">SpanHi</string>
+    <string name="quantity">Span Qty</string>
+    <string name="subject">SpanOrderFor</string>
+    <string name="submit">SpanSubmit</string>
+    <string name="summary">SpanSummary</string>
+    <string name="thanks">Gracious</string>
+    <string name="toppings">SpanToppings</string>
+    <string name="whipped_cream">SpanWhippedCream</string>
+    <string name="your_order">Span here\'s order</string>
+    <string name="minus"></string>
+</resources>
